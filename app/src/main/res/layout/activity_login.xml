@@ -29,7 +29,7 @@
             android:layout_height="180px"
             android:layout_below="@+id/et_name"
             android:layout_margin="10px"
-            android:hint="@string/login_name"
+            android:hint="@string/login_password"
             android:inputType="textPassword"
             android:text=""
             android:textColor="@color/loginTextColor"
