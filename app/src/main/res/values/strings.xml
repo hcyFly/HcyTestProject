@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HcyTest</string>
+    <string name="login_name">账号</string>
+</resources>

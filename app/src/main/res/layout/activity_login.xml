@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_rootview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="160px">
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="180px"
+            android:layout_margin="10px"
+            android:hint="@string/login_name"
+            android:inputType="text"
+            android:text=""
+            android:textColor="@color/loginTextColor"
+            android:textColorHint="@color/loginHint"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="180px"
+            android:layout_below="@+id/et_name"
+            android:layout_margin="10px"
+            android:hint="@string/login_name"
+            android:inputType="textPassword"
+            android:text=""
+            android:textColor="@color/loginTextColor"
+            android:textColorHint="@color/loginHint"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:layout_below="@+id/et_password"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px"
+            android:layout_marginTop="100px"
+            android:text="登录"
+            android:textSize="60px"/>
+
+    </RelativeLayout>
+
+</ScrollView>
