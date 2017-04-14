@@ -37,6 +37,7 @@
 
 
         <Button
+            android:id="@+id/but_commit"
             android:layout_width="match_parent"
             android:layout_height="150px"
             android:layout_below="@+id/et_password"
