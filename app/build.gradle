@@ -33,4 +33,6 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     //logcat formwork
     compile 'com.github.zhaokaiqiang.klog:library:1.6.0'
+    //权限管理
+    compile 'com.mylhyl:acp:1.1.7'
 }

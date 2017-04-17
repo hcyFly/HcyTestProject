@@ -23,4 +23,10 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.cn.burus.hcytestproject", appContext.getPackageName());
     }
+
+    @Test
+    public void testAddActivity() {
+        //assertEquals(0, 1);//方法第一个参数的意思是，我们预期的值；第二个参数的意思是，实际结果值。很显然它会报错。
+        assertEquals(1, 1);//这个就不会报错啦。
+    }
 }
