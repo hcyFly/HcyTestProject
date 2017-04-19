@@ -22,6 +22,28 @@
             android:layout_gravity="center"
             android:scaleType="fitXY"
             android:src="@drawable/sign_in_page_backgroup"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_glide_test"
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_marginTop="100px"
+                android:background="#20ff00ff"/>
+
+            <ImageView
+                android:id="@+id/img_glide_test2"
+                android:layout_width="400px"
+                android:layout_height="300px"
+                android:layout_marginLeft="20px"
+                android:layout_marginTop="100px"
+                android:layout_toRightOf="@+id/img_glide_test"/>
+        </RelativeLayout>
+
+
     </LinearLayout>
 
 </RelativeLayout>
