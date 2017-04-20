@@ -17,6 +17,7 @@ public class MyApplication extends Application {
     private static volatile MyApplication myApplication;
     public static Context globalContext;
     public static int countAty = 0;
+    public static int mAppStatus = -1;
 
     public MyApplication() {
     }
