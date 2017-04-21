@@ -15,12 +15,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //判断是否被强杀
-        if (MyApplication.mAppStatus == -1) {
-            protectApp();
-        } else {
-            setUpData();
-        }
         //适配
         View rootview = findViewById(android.R.id.content);
         SupportMultipleScreensUtil.scale(rootview);

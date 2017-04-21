@@ -2,6 +2,7 @@ package com.cn.burus.hcytestproject.activities;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import com.mylhyl.acp.AcpListener;
 import com.mylhyl.acp.AcpOptions;
 import com.socks.library.KLog;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,6 +35,8 @@ public class LoginActivity extends BaseActivity {
     Button mButCommit;
     @BindView(R.id.rl_rootview)
     RelativeLayout mRlRootview;
+    @BindView(R.id.but_code_s)
+    Button mButCodeS;
     private int mTicket = 20;
 
     @Override
@@ -43,12 +47,17 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.et_name, R.id.et_password, R.id.but_commit})
+    @OnClick({R.id.et_name, R.id.et_password, R.id.but_commit, R.id.but_code_s})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.et_name:
                 break;
             case R.id.et_password:
+                break;
+            case R.id.but_code_s:
+                // TODO: 2017/4/21  验证码
+                verifyCodeSuccess(20, 180);
+
                 break;
             case R.id.but_commit:
 
@@ -87,5 +96,44 @@ public class LoginActivity extends BaseActivity {
         KLog.e(TAG, "剩余车票：" + mTicket);
     }
 
+    //验证码
+    public void verifyCodeSuccess(int reaskDuration, int expireDuration) {
+        Toast.makeText(LoginActivity.this, "验证码已经发送，请注意查看," + expireDuration + " 秒内有效", Toast.LENGTH_SHORT).show();
+        startTime(new WeakReference<Button>(mButCodeS), "获取验证码", reaskDuration, 1);
+    }
 
+    /**
+     * 计时器 android 自封装
+     *
+     * @param but
+     * @param defaultStr
+     * @param max
+     * @param interval
+     */
+    private static void startTime(final WeakReference<Button> but, final String defaultStr, int max, int interval) {
+
+        but.get().setEnabled(false);
+        new CountDownTimer(max * 1000, interval * 1000 - 10) {
+            @Override
+            public void onTick(long l) {
+                if (null == but.get()) {
+                    this.cancel();
+                    KLog.i(TAG, "CountDownTimer cancel --113line");
+                } else {
+                    but.get().setText(((l + 15) / 1000) + "s");
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                if (null == but.get()) {
+                    this.cancel();
+                    KLog.i(TAG, "CountDownTimer cancel --123line");
+                    return;
+                }
+                but.get().setEnabled(true);
+                but.get().setText(defaultStr);
+            }
+        }.start();
+    }
 }
