@@ -17,7 +17,7 @@ import butterknife.OnClick;
 
 public class WelcomeActivity extends BaseActivity {
 
-    private static String TAG = "WelcomeActivity";
+    private static final String TAG = "WelcomeActivity";
     @BindView(R.id.img_welcome)
     ImageView mImgWelcome;
     @BindView(R.id.img_glide_test)
@@ -44,10 +44,12 @@ public class WelcomeActivity extends BaseActivity {
                 break;
             case R.id.img_glide_test2:
                 KLog.i(TAG, "--onclick  img glide test2");
-                String url2 = "http://p1.pstatp.com/large/166200019850062839d3";
+//                String url2 = "http://p1.pstatp.com/large/166200019850062839d3";//git imge
+                String url2 = "http://cn.bing.com/az/hprichbg/rb/Dongdaemun_ZH-CN10736487148_1920x1080.jpg";
                 Glide.with(this).load(url2).diskCacheStrategy(DiskCacheStrategy.NONE).into(mImgGlideTest);
                 break;
             case R.id.img_welcome:
+                //test code java
                 startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
                 break;
         }

@@ -55,6 +55,16 @@
             android:layout_marginLeft="20px"
             android:text="获取验证码"/>
 
+        <Button
+            android:id="@+id/but_intent_hide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/but_commit"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="30px"
+            android:layout_toRightOf="@+id/but_code_s"
+            android:text="隐试Intent"/>
+
     </RelativeLayout>
 
 </ScrollView>

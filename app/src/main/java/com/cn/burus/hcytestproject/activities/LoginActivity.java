@@ -1,8 +1,12 @@
 package com.cn.burus.hcytestproject.activities;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +16,7 @@ import android.widget.Toast;
 import com.cn.burus.hcytestproject.R;
 import com.cn.burus.hcytestproject.base.BaseActivity;
 import com.cn.burus.hcytestproject.utils.SystemInfo;
+import com.cn.burus.hcytestproject.utils.T;
 import com.mylhyl.acp.Acp;
 import com.mylhyl.acp.AcpListener;
 import com.mylhyl.acp.AcpOptions;
@@ -27,6 +32,9 @@ import butterknife.OnClick;
 public class LoginActivity extends BaseActivity {
 
     public static String TAG = LoginActivity.class.getSimpleName();
+    @BindView(R.id.but_intent_hide)
+    Button mButIntentHide;
+    private Context mContext;
     @BindView(R.id.et_name)
     EditText mEtName;
     @BindView(R.id.et_password)
@@ -44,20 +52,25 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
+        mContext = this;
     }
 
-    @OnClick({R.id.et_name, R.id.et_password, R.id.but_commit, R.id.but_code_s})
+    @OnClick({R.id.et_name, R.id.et_password, R.id.but_commit, R.id.but_code_s, R.id.but_intent_hide})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.et_name:
                 break;
             case R.id.et_password:
                 break;
+            case R.id.but_intent_hide:
+                Intent mIntent = new Intent("com.cn.burus.hcytestproject.SENCOND_ATY");
+                mIntent.addCategory("com.cn.burus.hcytestproject.SENCOND_ATY.MY_ACTION");
+                startActivity(mIntent);
+                T.showShort(mContext, "click intent hide");
+                break;
             case R.id.but_code_s:
                 // TODO: 2017/4/21  验证码
-                verifyCodeSuccess(20, 180);
-
+                verifyCodeSuccess(8, 180);
                 break;
             case R.id.but_commit:
 
@@ -135,5 +148,33 @@ public class LoginActivity extends BaseActivity {
                 but.get().setText(defaultStr);
             }
         }.start();
+    }
+
+    /**
+     * 菜单
+     *
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.add_item:
+                T.showShort(mContext, "click add");
+                break;
+            case R.id.remove_item:
+                T.showShort(mContext, "click remove");
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 }
