@@ -9,12 +9,16 @@ import android.view.View;
 
 import com.cn.burus.hcytestproject.activities.HomeActivity;
 import com.cn.burus.hcytestproject.widget.SupportMultipleScreensUtil;
+import com.socks.library.KLog;
 
 public class BaseActivity extends AppCompatActivity {
+
+//    private static final String TAG = "BaseActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        KLog.i(TAG, getClass().getSimpleName());
         //适配
         View rootview = findViewById(android.R.id.content);
         SupportMultipleScreensUtil.scale(rootview);

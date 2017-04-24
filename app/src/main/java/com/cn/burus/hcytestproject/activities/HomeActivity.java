@@ -1,5 +1,6 @@
 package com.cn.burus.hcytestproject.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,7 +12,7 @@ import com.socks.library.KLog;
 public class HomeActivity extends BaseActivity {
 
 
-    private static String TAG = HomeActivity.class.getSimpleName();
+    private static final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,12 @@ public class HomeActivity extends BaseActivity {
 
     @Override
     protected void protectApp() {
-        startActivity(new Intent(this, WelcomeActivity.class));
+        WelcomeActivity.actionStart(HomeActivity.this);
         finish();
+    }
+
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, HomeActivity.class);
+        context.startActivity(intent);
     }
 }

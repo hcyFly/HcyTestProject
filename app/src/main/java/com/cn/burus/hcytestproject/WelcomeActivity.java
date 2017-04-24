@@ -1,5 +1,6 @@
 package com.cn.burus.hcytestproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -61,10 +62,13 @@ public class WelcomeActivity extends BaseActivity {
                 break;
             case R.id.img_welcome:
                 //test code java
-                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                LoginActivity.actionStart(WelcomeActivity.this);
                 break;
         }
     }
 
-
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, WelcomeActivity.class);
+        context.startActivity(intent);
+    }
 }

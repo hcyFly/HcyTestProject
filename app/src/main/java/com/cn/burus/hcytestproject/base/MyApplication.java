@@ -18,7 +18,7 @@ public class MyApplication extends Application {
     public static Context globalContext;
     public static int countAty = 0;
 
-    private MyApplication() {
+    public MyApplication() {
     }
 
     public static MyApplication getInstance() {
@@ -35,7 +35,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        globalContext = getApplicationContext();
+        globalContext = this;
         SupportMultipleScreensUtil.init(globalContext);
         KLog.init(true);
         registerActivityLifecycleCallbacks(new AppStatusTracker());

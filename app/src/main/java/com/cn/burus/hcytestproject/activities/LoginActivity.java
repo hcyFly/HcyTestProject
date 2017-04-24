@@ -177,4 +177,10 @@ public class LoginActivity extends BaseActivity {
         }
         return true;
     }
+
+
+    public static void actionStart(Context context) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        context.startActivity(intent);
+    }
 }

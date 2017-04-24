@@ -43,8 +43,6 @@
         </activity>
         <activity android:name=".activities.ThirdActivity">
         </activity>
-        <activity android:name=".base.BaseActivity">
-        </activity>
     </application>
 
 </manifest>
