@@ -31,7 +31,7 @@ import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity {
 
-    public static String TAG = LoginActivity.class.getSimpleName();
+    public static final String TAG = "LoginActivity";
     @BindView(R.id.but_intent_hide)
     Button mButIntentHide;
     private Context mContext;

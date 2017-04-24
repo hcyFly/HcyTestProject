@@ -40,7 +40,22 @@
                 android:layout_height="300px"
                 android:layout_marginLeft="20px"
                 android:layout_marginTop="100px"
-                android:layout_toRightOf="@+id/img_glide_test"/>
+                android:layout_toRightOf="@+id/img_glide_test"
+                android:background="#80ff00ff"/>
+
+            <Button
+                android:id="@+id/but_my_load_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_glide_test2"
+                android:text="my loader image framework test"/>
+
+            <ImageView
+                android:id="@+id/img_my_loadiamge_test"
+                android:layout_width="320px"
+                android:layout_height="320px"
+                android:layout_below="@+id/but_my_load_image"
+                android:background="#20ff00ff"/>
         </RelativeLayout>
 
 

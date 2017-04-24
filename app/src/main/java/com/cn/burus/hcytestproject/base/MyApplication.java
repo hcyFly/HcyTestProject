@@ -14,32 +14,32 @@ import com.socks.library.KLog;
 
 public class MyApplication extends Application {
 
-    private static volatile MyApplication myApplication;
+    private static final String TAG = "MyApplication";
     public static Context globalContext;
     public static int countAty = 0;
 
-    public MyApplication() {
+    private MyApplication() {
     }
 
     public static MyApplication getInstance() {
+        return MyapplicationHolder.myApplication;
+    }
 
-        if (myApplication == null) {
-            synchronized (MyApplication.class) {
-                if (myApplication == null) {
-                    myApplication = new MyApplication();
-                }
-            }
-        }
-        return myApplication;
+    /**
+     * 静态内部类(饿汉单例模式 推荐写法)
+     */
+    private static class MyapplicationHolder {
+        private static final MyApplication myApplication = new MyApplication();
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        globalContext = this;
+        globalContext = getApplicationContext();
         SupportMultipleScreensUtil.init(globalContext);
         KLog.init(true);
         registerActivityLifecycleCallbacks(new AppStatusTracker());
+        KLog.i(TAG, "onCreate complete");
     }
 
 

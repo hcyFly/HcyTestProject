@@ -3,6 +3,7 @@ package com.cn.burus.hcytestproject.utils;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.net.wifi.WifiManager;
+import android.os.Environment;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
@@ -92,5 +93,23 @@ public class SystemInfo {
             stringBuilder.append(String.format("%02x", c));
         }
         return stringBuilder.toString();
+    }
+
+    /**
+     * 获取应用的缓存路径
+     * 【注：有SDcard返回sd目录下缓存 否则为手机目录下缓存】
+     *
+     * @param context
+     * @return 路径
+     */
+    public static String getDiskCacheDir(Context context) {
+        String cachePath = null;
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+                || !Environment.isExternalStorageRemovable()) {
+            cachePath = context.getExternalCacheDir().getPath();
+        } else {
+            cachePath = context.getCacheDir().getPath();
+        }
+        return cachePath;
     }
 }
