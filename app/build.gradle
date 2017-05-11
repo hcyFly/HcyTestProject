@@ -37,4 +37,6 @@ dependencies {
     //权限管理
     compile 'com.mylhyl:acp:1.1.7'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
+    compile 'com.squareup.okhttp3:okhttp-urlconnection:3.7.0'
 }

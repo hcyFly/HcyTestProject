@@ -42,6 +42,15 @@ public class MyApplication extends Application {
         KLog.i(TAG, "onCreate complete");
     }
 
+    /**
+     * 方法数超出解决方案
+     * @param base
+     */
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+//        MultiDex.install(this);
+    }
 
     public class AppStatusTracker implements Application.ActivityLifecycleCallbacks {
 

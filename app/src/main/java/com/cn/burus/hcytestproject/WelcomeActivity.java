@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.cn.burus.hcytestproject.activities.HomeActivity;
 import com.cn.burus.hcytestproject.activities.LoginActivity;
 import com.cn.burus.hcytestproject.base.BaseActivity;
 import com.cn.burus.hcytestproject.designmode.imageloaderframework.DoubleCache;
@@ -68,7 +69,7 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     public static void actionStart(Context context) {
-        Intent intent = new Intent(context, WelcomeActivity.class);
+        Intent intent = new Intent(context, HomeActivity.class);
         context.startActivity(intent);
     }
 }
