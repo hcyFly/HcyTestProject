@@ -11,5 +11,5 @@ public interface OnProgressUpdatedListener {
      * @param curLen   当前进度
      * @param totalLen 总长度
      */
-    void onProgressUpdated(int curLen, int totalLen);
+     void onProgressUpdated(int curLen, int totalLen);
 }
