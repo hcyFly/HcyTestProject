@@ -23,7 +23,7 @@ public class Request {
     public ICallback iCallback;
     //是否需要进度回调
     public boolean enableProgressUpdated = false;
-    //全局异常监听
+    //全局异常集中处理监听
     public OnGlobalExceptionListener onGlobalExceptionListener;
     //标识
     public String tag;
@@ -67,7 +67,7 @@ public class Request {
     }
 
     /**
-     * 检查请求任务是否已取消
+     * 检查请求任务是否已取消请求
      *
      * @throws AppException
      */
@@ -92,6 +92,8 @@ public class Request {
     public void execute(Executor mExecutors) {
         task = new RequestTask(this);
         if (Build.VERSION.SDK_INT > 11) {
+            //系统版本 > 3.0 AsyceTask中的线程池默认使用同步队列（只有一个线程 效率低）
+            //因此这里我们自己传一个线程池（默认固定为 5 ）
             task.executeOnExecutor(mExecutors);
         } else {
             task.execute();

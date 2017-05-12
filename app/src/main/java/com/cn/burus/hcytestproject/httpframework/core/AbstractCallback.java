@@ -82,6 +82,7 @@ public abstract class AbstractCallback<T> implements ICallback<T> {
                         if (curLen * 100l / totalLen > percent) {
                             curLen += len;
                             if (listener != null) {
+                                //下载进度更新回调
                                 listener.onProgressUpdated(curLen, totalLen);
                             }
                             percent = (int) (curLen * 100l / totalLen);
@@ -102,6 +103,12 @@ public abstract class AbstractCallback<T> implements ICallback<T> {
         }
     }
 
+
+    /**
+     * 下载或上传中取消请求
+     *
+     * @throws AppException
+     */
     protected void checkIfCancelled() throws AppException {
         if (isCancelled) {
             throw new AppException(AppException.ErrorType.CANCEL, "the request has been cancelled");
@@ -123,11 +130,26 @@ public abstract class AbstractCallback<T> implements ICallback<T> {
         return t;
     }
 
+    /**
+     * 此返回是 null 则继续执行网络请求
+     * （即：可以操作 页面先展示缓存数据
+     * 等网络数据请求更新后显示最新数据
+     * 在页面上使用  handler 等方式可以实现）
+     *
+     * @return
+     */
     @Override
     public T preRequest() {
         return null;
     }
 
+    /**
+     * 定义为抽象方法 子类实现
+     *
+     * @param result
+     * @return
+     * @throws AppException
+     */
     protected abstract T bindData(String result) throws AppException;
 
 

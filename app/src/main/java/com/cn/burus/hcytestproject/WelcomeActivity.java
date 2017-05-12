@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -13,6 +14,9 @@ import com.cn.burus.hcytestproject.activities.LoginActivity;
 import com.cn.burus.hcytestproject.base.BaseActivity;
 import com.cn.burus.hcytestproject.designmode.imageloaderframework.DoubleCache;
 import com.cn.burus.hcytestproject.designmode.imageloaderframework.ImageLoader;
+import com.cn.burus.hcytestproject.httpframework.Request;
+import com.cn.burus.hcytestproject.httpframework.callback.StringCallback;
+import com.cn.burus.hcytestproject.httpframework.error.AppException;
 import com.socks.library.KLog;
 
 import butterknife.BindView;
@@ -32,6 +36,8 @@ public class WelcomeActivity extends BaseActivity {
     ImageView mImgMyLoadiamgeTest;
     //图片加载框架  my
     ImageLoader mImageLoader = new ImageLoader();
+    @BindView(R.id.but_hcyokhttp)
+    Button mButHcyokhttp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,7 @@ public class WelcomeActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.img_glide_test, R.id.img_glide_test2, R.id.img_welcome, R.id.but_my_load_image})
+    @OnClick({R.id.img_glide_test, R.id.img_glide_test2, R.id.img_welcome, R.id.but_my_load_image,R.id.but_hcyokhttp})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_glide_test:
@@ -64,6 +70,26 @@ public class WelcomeActivity extends BaseActivity {
             case R.id.img_welcome:
                 //test code java
                 LoginActivity.actionStart(WelcomeActivity.this);
+                break;
+
+            case R.id.but_hcyokhttp:
+                // TODO: 2017/5/12   test hcy okhttp
+                String urlhcy = "http://guolin.tech/api/weather?cityid=shenzhen&key=3799d79d735340ac9accef410a7f5316";
+                Request request = new Request(urlhcy, Request.RequestMethod.GET);
+                request.setCallback(new StringCallback() {
+                    @Override
+                    public void onSuccess(String result) {
+
+                    }
+
+                    @Override
+                    public void onFailure(AppException e) {
+
+                    }
+                });
+                request.maxRetryCount=3;
+
+
                 break;
         }
     }

@@ -11,9 +11,9 @@
         android:id="@+id/ll_rootview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
+        android:orientation="vertical"
         android:layout_alignParentTop="true"
-        android:orientation="vertical">
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:id="@+id/img_welcome"
@@ -53,9 +53,20 @@
             <ImageView
                 android:id="@+id/img_my_loadiamge_test"
                 android:layout_width="320px"
-                android:layout_height="320px"
-                android:layout_below="@+id/but_my_load_image"
+                android:layout_height="220px"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
                 android:background="#20ff00ff"/>
+
+            <Button
+                android:id="@+id/but_hcyokhttp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hcyokhttp"
+                android:layout_alignTop="@+id/img_my_loadiamge_test"
+                android:layout_toEndOf="@+id/img_my_loadiamge_test"
+                android:layout_marginStart="10px"
+                android:layout_marginTop="10px"/>
         </RelativeLayout>
 
 

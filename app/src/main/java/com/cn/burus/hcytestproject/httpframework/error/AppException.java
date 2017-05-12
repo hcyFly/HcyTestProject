@@ -1,6 +1,7 @@
 package com.cn.burus.hcytestproject.httpframework.error;
 
 /**
+ * 全局异常类
  * Created by chengyou.huang on 2017/5/11.
  */
 
@@ -16,6 +17,12 @@ public class AppException extends Exception {
     public String responseMessage;
 
     public ErrorType type;
+
+    /**
+     * 此处可以根据项目实际
+     * 添加不同的异常字段
+     * 和相应的构造方法
+     */
 
     /**
      * 构造方法1

@@ -3,7 +3,8 @@ package com.cn.burus.hcytestproject.httpframework.itf;
 import com.cn.burus.hcytestproject.httpframework.error.AppException;
 
 /**
- * 全局异常监听
+ * 全局异常集中处理
+ * BaseActivity实现此接口 在方法handleException()中处理
  * Created by chengyou.huang on 2017/5/11.
  */
 

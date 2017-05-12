@@ -28,6 +28,8 @@ public class RequestTask extends AsyncTask<Void, Integer, Object> {
     @Override
     protected Object doInBackground(Void... params) {
         if (request.iCallback != null) {
+            //请求时返回缓存数据（DB 或其他File  sp等其他  此处
+            // 返回为null 则继续网络请求  不为空测使用缓存不再网络请求）
             Object o = request.iCallback.preRequest();
             if (o != null) {
                 return o;
@@ -55,6 +57,7 @@ public class RequestTask extends AsyncTask<Void, Integer, Object> {
 
     @Override
     protected void onCancelled() {
+        //asynctask 提供的取消执行方法
         super.onCancelled();
     }
 
@@ -94,6 +97,7 @@ public class RequestTask extends AsyncTask<Void, Integer, Object> {
                 return request.iCallback.parse(connection, new OnProgressUpdatedListener() {
                     @Override
                     public void onProgressUpdated(int curLen, int totalLen) {
+                        //调用此方法 会回调到主线程的 <onProgressUpdate()方法中>
                         publishProgress(Request.STATE_DOWNLOAD, curLen, totalLen);
                     }
                 });
@@ -103,6 +107,7 @@ public class RequestTask extends AsyncTask<Void, Integer, Object> {
             }
         } catch (AppException e) {
             if (e.type == AppException.ErrorType.TIMEOUT) {
+                //请求超时或服务器响应超时  重试处理
                 if (retry < request.maxRetryCount) {
                     retry++;
                     return request(retry);
