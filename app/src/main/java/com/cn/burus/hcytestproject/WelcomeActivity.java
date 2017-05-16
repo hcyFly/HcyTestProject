@@ -12,12 +12,19 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.cn.burus.hcytestproject.activities.HomeActivity;
 import com.cn.burus.hcytestproject.activities.LoginActivity;
 import com.cn.burus.hcytestproject.base.BaseActivity;
+import com.cn.burus.hcytestproject.base.MyApplication;
 import com.cn.burus.hcytestproject.designmode.imageloaderframework.DoubleCache;
 import com.cn.burus.hcytestproject.designmode.imageloaderframework.ImageLoader;
 import com.cn.burus.hcytestproject.httpframework.Request;
-import com.cn.burus.hcytestproject.httpframework.callback.StringCallback;
+import com.cn.burus.hcytestproject.httpframework.RequestManager;
+import com.cn.burus.hcytestproject.httpframework.callback.JsonCallback;
+import com.cn.burus.hcytestproject.httpframework.callback.JsonReaderCallback;
 import com.cn.burus.hcytestproject.httpframework.error.AppException;
+import com.cn.burus.hcytestproject.modle.Weather;
+import com.cn.burus.hcytestproject.utils.SystemInfo;
 import com.socks.library.KLog;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +55,7 @@ public class WelcomeActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.img_glide_test, R.id.img_glide_test2, R.id.img_welcome, R.id.but_my_load_image,R.id.but_hcyokhttp})
+    @OnClick({R.id.img_glide_test, R.id.img_glide_test2, R.id.img_welcome, R.id.but_my_load_image, R.id.but_hcyokhttp})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_glide_test:
@@ -74,24 +81,69 @@ public class WelcomeActivity extends BaseActivity {
 
             case R.id.but_hcyokhttp:
                 // TODO: 2017/5/12   test hcy okhttp
-                String urlhcy = "http://guolin.tech/api/weather?cityid=shenzhen&key=3799d79d735340ac9accef410a7f5316";
-                Request request = new Request(urlhcy, Request.RequestMethod.GET);
-                request.setCallback(new StringCallback() {
-                    @Override
-                    public void onSuccess(String result) {
-
-                    }
-
-                    @Override
-                    public void onFailure(AppException e) {
-
-                    }
-                });
-                request.maxRetryCount=3;
+//                hcyokhttpTest1();
+                hcyokhttpTestPath();
 
 
                 break;
         }
+    }
+
+    private void hcyokhttpTest1() {
+        String urlhcy = "http://guolin.tech/api/weather?cityid=shenzhen&key=3799d79d735340ac9accef410a7f5316";
+        final Request request = new Request(urlhcy, Request.RequestMethod.GET);
+        request.setCallback(new JsonCallback<Weather>() {
+
+            @Override
+            public void onSuccess(Weather result) {
+                KLog.i(TAG, "---onSuccess:" + result.getHeWeather().get(0).getBasic().getCity());
+            }
+
+            @Override
+            public void onFailure(AppException e) {
+                KLog.i(TAG, "---onFailure:" + e.toString());
+            }
+        });
+        request.maxRetryCount = 3;
+        RequestManager.getInstance().performRequest(request);
+    }
+
+    private void hcyokhttpTestPath() {
+        String urlhcy = "http://guolin.tech/api/weather?cityid=shenzhen&key=3799d79d735340ac9accef410a7f5316";
+        final Request request = new Request(urlhcy, Request.RequestMethod.GET);
+        String path = SystemInfo.getDiskCacheDir(MyApplication.globalContext) + File.separator + "json.txt";
+        KLog.i(TAG, "---:" + path);
+        request.setCallback(new JsonReaderCallback<Weather>() {
+
+
+            //子线程处理服务器返回数据 再回调到onSeuccess
+            @Override
+            public Weather postRequest(Weather weather) {
+                return super.postRequest(weather);
+            }
+
+            //子线程处理 请求前是否有缓存数据 返回null 则继续网络请求否则 使用缓存数据 回调到onSuccess
+            @Override
+            public Weather preRequest() {
+                return super.preRequest();
+            }
+
+            @Override
+            public void onSuccess(Weather result) {
+                if (result == null) {
+                    KLog.i(TAG, "---onSuccess: result==null");
+                } else {
+                    KLog.i(TAG, "---onSuccess:" + result.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(AppException e) {
+                KLog.i(TAG, "---onFailure:" + e.toString());
+            }
+        }.setCachePath(path));
+        request.maxRetryCount = 0;
+        RequestManager.getInstance().performRequest(request);
     }
 
     public static void actionStart(Context context) {
