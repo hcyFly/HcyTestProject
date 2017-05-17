@@ -41,4 +41,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.squareup.okhttp3:okhttp-urlconnection:3.7.0'
     compile 'com.google.code.gson:gson:2.8.0'
+    //hcy download framework
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
 }
