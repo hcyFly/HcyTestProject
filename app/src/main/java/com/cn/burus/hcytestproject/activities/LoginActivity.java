@@ -34,6 +34,8 @@ public class LoginActivity extends BaseActivity {
     public static final String TAG = "LoginActivity";
     @BindView(R.id.but_intent_hide)
     Button mButIntentHide;
+    @BindView(R.id.but_intent_hide2)
+    Button butIntentHide2;
     private Context mContext;
     @BindView(R.id.et_name)
     EditText mEtName;
@@ -55,7 +57,7 @@ public class LoginActivity extends BaseActivity {
         mContext = this;
     }
 
-    @OnClick({R.id.et_name, R.id.et_password, R.id.but_commit, R.id.but_code_s, R.id.but_intent_hide})
+    @OnClick({R.id.et_name, R.id.et_password, R.id.but_commit, R.id.but_code_s, R.id.but_intent_hide,R.id.but_intent_hide2})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.et_name:
@@ -68,6 +70,12 @@ public class LoginActivity extends BaseActivity {
                 startActivity(mIntent);
                 T.showShort(mContext, "click intent hide");
                 break;
+
+            case R.id.but_intent_hide2:
+
+
+                break;
+
             case R.id.but_code_s:
                 // TODO: 2017/4/21  验证码
                 verifyCodeSuccess(8, 180);
@@ -183,4 +191,6 @@ public class LoginActivity extends BaseActivity {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
     }
+
+
 }

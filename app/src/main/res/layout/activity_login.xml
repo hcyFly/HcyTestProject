@@ -65,6 +65,16 @@
             android:layout_toRightOf="@+id/but_code_s"
             android:text="隐试Intent"/>
 
+        <Button
+            android:id="@+id/but_intent_hide2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/but_commit"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="30px"
+            android:layout_toRightOf="@+id/but_intent_hide"
+            android:text="隐试Intent2"/>
+
     </RelativeLayout>
 
 </ScrollView>

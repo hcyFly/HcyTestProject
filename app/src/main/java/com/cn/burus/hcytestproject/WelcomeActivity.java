@@ -60,18 +60,19 @@ public class WelcomeActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.img_glide_test:
                 KLog.i(TAG, "--onclick  img glide test");
-                String url = "http://cn.bing.com/az/hprichbg/rb/Dongdaemun_ZH-CN10736487148_1920x1080.jpg";
+                String url = "http://img.ph.126.net/YqgqRE1WmIvbWtD2Z9civw==/1075797361005026541.jpg";
                 Glide.with(this).load(url).into(mImgGlideTest2);
                 break;
             case R.id.img_glide_test2:
                 KLog.i(TAG, "--onclick  img glide test2");
-//                String url2 = "http://p1.pstatp.com/large/166200019850062839d3";//git imge
-                String url2 = "http://cn.bing.com/az/hprichbg/rb/Dongdaemun_ZH-CN10736487148_1920x1080.jpg";
+                //String url2 = "http://p1.pstatp.com/large/166200019850062839d3";
+                //http://img.ph.126.net/ocT0cPlMSiTs2BgbZ8bHFw==/631348372762626203.jpg
+                String url2 = "http://img.ph.126.net/ocT0cPlMSiTs2BgbZ8bHFw==/631348372762626203.jpg";
                 Glide.with(this).load(url2).diskCacheStrategy(DiskCacheStrategy.NONE).into(mImgGlideTest);
                 break;
             case R.id.but_my_load_image:
                 KLog.i(TAG, "--onclick  but_my_load_image");
-                String urlmyloadimage = "http://cn.bing.com/az/hprichbg/rb/Dongdaemun_ZH-CN10736487148_1920x1080.jpg";
+                String urlmyloadimage = "http://img.ph.126.net/YqgqRE1WmIvbWtD2Z9civw==/1075797361005026541.jpg";
                 mImageLoader.displayImage(urlmyloadimage, mImgMyLoadiamgeTest);
                 break;
             case R.id.img_welcome:
