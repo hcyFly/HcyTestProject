@@ -4,7 +4,7 @@
     <string name="login_password">密码</string>
 
     //屏幕适配框架
-    <item name="is_scale_size_tag" type="id"/>
-    <item name="is_scale_font_tag" type="id"/>
+    <item name="is_scale_size_tag" type="id" />
+    <item name="is_scale_font_tag" type="id" />
     //
 </resources>

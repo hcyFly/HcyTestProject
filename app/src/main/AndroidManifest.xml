@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cn.burus.hcytestproject">
+    package="com.cn.burus.hcytestproject">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails   android.permission.READ_PHONE_STATE-->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.READ_PROFILE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- To auto-complete the email text field in the login form with the user's emails   android.permission.READ_PHONE_STATE -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:name=".base.MyApplication"
@@ -21,28 +21,32 @@
             android:name=".WelcomeActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.HomeActivity">
-        </activity>
+        <activity android:name=".activities.HomeActivity" />
         <activity
             android:name=".activities.LoginActivity"
-            android:windowSoftInputMode="stateHidden|stateUnchanged">
-        </activity>
-        <!--test 隐试intent   （android.intent.category.DEFAULT） 不能去掉 -->
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+        <!-- test 隐试intent   （android.intent.category.DEFAULT） 不能去掉 -->
         <activity android:name=".activities.SecondActivity">
             <intent-filter>
-                <action android:name="com.cn.burus.hcytestproject.SENCOND_ATY"></action>
+                <action android:name="com.cn.burus.hcytestproject.SENCOND_ATY" />
 
-                <category android:name="android.intent.category.DEFAULT"></category>
-                <category android:name="com.cn.burus.hcytestproject.SENCOND_ATY.MY_ACTION"></category>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.cn.burus.hcytestproject.SENCOND_ATY.MY_ACTION" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ThirdActivity">
-        </activity>
+        <activity android:name=".activities.ThirdActivity" />
+        <activity android:name=".test_ipc.IpcActivity" />
+
+
+        <!--ipc进程间通信 test-->
+        <service
+            android:name="com.cn.burus.hcytestproject.test_ipc.MessengerService"
+            android:process=":remote"/>
     </application>
 
 </manifest>

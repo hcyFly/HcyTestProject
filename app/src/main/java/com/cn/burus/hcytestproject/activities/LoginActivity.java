@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,21 +23,34 @@ import com.mylhyl.acp.AcpListener;
 import com.mylhyl.acp.AcpOptions;
 import com.socks.library.KLog;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class LoginActivity extends BaseActivity {
 
     public static final String TAG = "LoginActivity";
+    private Context mContext;
+    private int mTicket = 20;
     @BindView(R.id.but_intent_hide)
     Button mButIntentHide;
     @BindView(R.id.but_intent_hide2)
     Button butIntentHide2;
-    private Context mContext;
     @BindView(R.id.et_name)
     EditText mEtName;
     @BindView(R.id.et_password)
@@ -47,7 +61,6 @@ public class LoginActivity extends BaseActivity {
     RelativeLayout mRlRootview;
     @BindView(R.id.but_code_s)
     Button mButCodeS;
-    private int mTicket = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +70,7 @@ public class LoginActivity extends BaseActivity {
         mContext = this;
     }
 
-    @OnClick({R.id.et_name, R.id.et_password, R.id.but_commit, R.id.but_code_s, R.id.but_intent_hide,R.id.but_intent_hide2})
+    @OnClick({R.id.et_name, R.id.et_password, R.id.but_commit, R.id.but_code_s, R.id.but_intent_hide, R.id.but_intent_hide2})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.et_name:
@@ -72,6 +85,41 @@ public class LoginActivity extends BaseActivity {
                 break;
 
             case R.id.but_intent_hide2:
+                // TODO: 2017/6/27   rxjava test
+                Observable<Integer> observable1 = Observable.create(new ObservableOnSubscribe<Integer>() {
+                    @Override
+                    public void subscribe(@NonNull ObservableEmitter<Integer> observableEmitter) throws Exception {
+                        for (int i = 0; ; i++) {
+                            observableEmitter.onNext(i);
+                        }
+
+                    }
+                }).subscribeOn(Schedulers.io()).sample(2, TimeUnit.MICROSECONDS);
+
+                Observer<Integer> observer =new  Observer<Integer>(){
+                    @Override
+                    public void onSubscribe(@NonNull Disposable disposable) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Integer integer) {
+                        Log.i(TAG,""+integer);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                };
+
+                observable1.subscribe(observer);
 
 
                 break;

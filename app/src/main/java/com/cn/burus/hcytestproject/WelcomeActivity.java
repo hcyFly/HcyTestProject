@@ -21,6 +21,7 @@ import com.cn.burus.hcytestproject.httpframework.callback.JsonCallback;
 import com.cn.burus.hcytestproject.httpframework.callback.JsonReaderCallback;
 import com.cn.burus.hcytestproject.httpframework.error.AppException;
 import com.cn.burus.hcytestproject.modle.Weather;
+import com.cn.burus.hcytestproject.test_ipc.IpcActivity;
 import com.cn.burus.hcytestproject.utils.SystemInfo;
 import com.socks.library.KLog;
 
@@ -77,7 +78,10 @@ public class WelcomeActivity extends BaseActivity {
                 break;
             case R.id.img_welcome:
                 //test code java
-                LoginActivity.actionStart(WelcomeActivity.this);
+//                LoginActivity.actionStart(WelcomeActivity.this);
+
+                IpcActivity.actionStart(WelcomeActivity.this);
+
                 break;
 
             case R.id.but_hcyokhttp:
